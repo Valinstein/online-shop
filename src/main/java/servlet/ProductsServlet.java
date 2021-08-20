@@ -3,6 +3,7 @@ package servlet;
 import entity.Product;
 import generator.PageGenerator;
 import service.ProductService;
+import service.ServiceLocator;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,11 +15,8 @@ import java.util.Map;
 
 public class ProductsServlet extends HttpServlet {
 
-    public void setService(ProductService service) {
-        this.service = service;
-    }
+    ProductService service = ServiceLocator.getService(ProductService.class);
 
-    ProductService service;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {

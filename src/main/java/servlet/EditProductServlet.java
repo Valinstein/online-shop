@@ -3,8 +3,8 @@ package servlet;
 import entity.Product;
 import generator.PageGenerator;
 import service.ProductService;
+import service.ServiceLocator;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,14 +14,10 @@ import java.util.Map;
 
 public class EditProductServlet extends HttpServlet {
 
-    private ProductService service;
-
-    public void setService(ProductService service) {
-        this.service = service;
-    }
+    private ProductService service = ServiceLocator.getService(ProductService.class);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html;charset=utf-8");
         int id = Integer.parseInt(req.getParameter("id"));
 
@@ -35,7 +31,7 @@ public class EditProductServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html;charset=utf-8");
         int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");

@@ -3,8 +3,8 @@ package servlet;
 import entity.Product;
 import generator.PageGenerator;
 import service.ProductService;
+import service.ServiceLocator;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,11 +16,8 @@ import java.util.Map;
 public class NewProductServlet extends HttpServlet {
 
 
-    private ProductService service;
+    private ProductService service = ServiceLocator.getService(ProductService.class);
 
-    public void setService(ProductService service) {
-        this.service = service;
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -28,10 +25,10 @@ public class NewProductServlet extends HttpServlet {
 
         String page = PageGenerator.generatePage(paramMap, "new-product.ftl");
         resp.getWriter().println(page);
-}
+    }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String name = req.getParameter("name");
         double price = Double.parseDouble(req.getParameter("price").replace(",", "."));
 
