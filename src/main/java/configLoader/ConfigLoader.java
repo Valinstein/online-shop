@@ -10,16 +10,20 @@ public class ConfigLoader {
     private String password;
 
     public ConfigLoader(String path) {
-        Properties property = new Properties();
+        Properties properties = new Properties();
 
         try (InputStream input = ConfigLoader.class.getClassLoader().getResourceAsStream(path)) {
-            property.load(input);
-            this.url = property.getProperty("url");
-            this.user = property.getProperty("user");
-            this.password = property.getProperty("password");
+            properties.load(input);
+            this.url = properties.getProperty("db.url");
+            this.user = properties.getProperty("db.user");
+            this.password = properties.getProperty("db.password");
         } catch (IOException e) {
             throw new RuntimeException("Can't load configuration properties", e);
         }
+    }
+
+    public ConfigLoader() {
+
     }
 
     public String getUrl() {
@@ -32,5 +36,17 @@ public class ConfigLoader {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

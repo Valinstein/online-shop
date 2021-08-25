@@ -2,41 +2,50 @@
 <web-app>
 
     <servlet>
-        <servlet-name>productsServlet</servlet-name>
-        <servlet-class>servlet.ProductsServlet</servlet-class>
+        <servlet-name>app</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
-    <servlet>
-        <servlet-name>newProductServlet</servlet-name>
-        <servlet-class>servlet.NewProductServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>editProductServlet</servlet-name>
-        <servlet-class>servlet.EditProductServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>deleteProductServlet</servlet-name>
-        <servlet-class>servlet.DeleteProductServlet</servlet-class>
-    </servlet>
+    <servlet-mapping>
+        <servlet-name>app</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>productsServlet</servlet-name>-->
+<!--        <servlet-class>servlet.ProductsServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet>-->
+<!--        <servlet-name>newProductServlet</servlet-name>-->
+<!--        <servlet-class>servlet.NewProductServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet>-->
+<!--        <servlet-name>editProductServlet</servlet-name>-->
+<!--        <servlet-class>servlet.EditProductServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet>-->
+<!--        <servlet-name>deleteProductServlet</servlet-name>-->
+<!--        <servlet-class>servlet.DeleteProductServlet</servlet-class>-->
+<!--    </servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>productsServlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>productsServlet</servlet-name>
-        <url-pattern>/products</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>newProductServlet</servlet-name>
-        <url-pattern>/product/new</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>editProductServlet</servlet-name>
-        <url-pattern>/product/edit</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>deleteProductServlet</servlet-name>
-        <url-pattern>/product/delete</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>productsServlet</servlet-name>-->
+<!--        <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>productsServlet</servlet-name>-->
+<!--        <url-pattern>/products</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>newProductServlet</servlet-name>-->
+<!--        <url-pattern>/product/new</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>editProductServlet</servlet-name>-->
+<!--        <url-pattern>/product/edit</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>deleteProductServlet</servlet-name>-->
+<!--        <url-pattern>/product/delete</url-pattern>-->
+<!--    </servlet-mapping>-->
 
 </web-app>

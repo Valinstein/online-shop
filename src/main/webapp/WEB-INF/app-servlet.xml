@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="java"/>
+
+    <bean id="productService" class="service.ProductService">
+        <property name="jdbcProductDAO" ref="jdbcProductDAO"/>
+    </bean>
+
+    <bean id="jdbcProductDAO" class="jdbc.JDBCProductDAO">
+        <property name="configLoader" ref="configLoader"/>
+    </bean>
+
+    <bean id="configLoader" class="configLoader.ConfigLoader">
+        <property name="url" value="jdbc:postgresql://localhost:5432/shop"/>
+        <property name="user" value="postgres"/>
+        <property name="password" value="postgres"/>
+    </bean>
+
+<!--    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
+<!--        <property name="templateLoaderPath" value="classpath:/templates/"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
+<!--        <property name="cache" value="true"/>-->
+<!--        <property name="prefix" value=""/>-->
+<!--        <property name="suffix" value=".ftl"/>-->
+
+<!--        &lt;!&ndash; if you want to use the Spring FreeMarker macros, set this property to true &ndash;&gt;-->
+<!--        <property name="exposeSpringMacroHelpers" value="false"/>-->
+
+<!--    </bean>-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="cache" value="true"/>
+        <property name="prefix" value=""/>
+        <property name="suffix" value=".html"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+    </bean>
+
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="classpath:/templates/"/>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="default_encoding">UTF-8</prop>
+            </props>
+        </property>
+    </bean>
+
+    <mvc:annotation-driven/>
+
+</beans>
