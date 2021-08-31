@@ -1,8 +1,7 @@
 package service;
 
 import entity.Product;
-import jdbc.JDBCProductDAO;
-import org.junit.jupiter.api.Assertions.*;
+import jdbc.impl.ProductDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,16 +16,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductServiceTest {
 
-    private JDBCProductDAO productDAO;
+    private ProductDAO productDAO;
     private Product product;
     private ProductService service;
 
     @BeforeEach
     void init() {
         service = new ProductService();
-        productDAO = mock(JDBCProductDAO.class);
+        productDAO = mock(ProductDAO.class);
         product = new Product();
-        service.setJdbcProductDAO(productDAO);
+        service.setProductDAO(productDAO);
     }
 
 

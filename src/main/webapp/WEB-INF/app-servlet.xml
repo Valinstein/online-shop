@@ -11,39 +11,31 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="java"/>
+    <context:component-scan base-package="web.controller"/>
 
     <bean id="productService" class="service.ProductService">
-        <property name="jdbcProductDAO" ref="jdbcProductDAO"/>
+        <property name="productDAO" ref="productDAO"/>
     </bean>
 
-    <bean id="jdbcProductDAO" class="jdbc.JDBCProductDAO">
-        <property name="configLoader" ref="configLoader"/>
+    <bean id="productDAO" class="jdbc.impl.ProductDAO">
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="configLoader" class="configLoader.ConfigLoader">
-        <property name="url" value="jdbc:postgresql://localhost:5432/shop"/>
-        <property name="user" value="postgres"/>
-        <property name="password" value="postgres"/>
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <bean id="dataSource" class="org.postgresql.ds.PGSimpleDataSource">
+        <property name="url" value="${db.url}"/>
+        <property name="user" value="${db.user}"/>
+        <property name="password" value="${db.password}"/>
+    </bean>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
-<!--    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
-<!--        <property name="templateLoaderPath" value="classpath:/templates/"/>-->
-<!--    </bean>-->
-
-<!--    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
-<!--        <property name="cache" value="true"/>-->
-<!--        <property name="prefix" value=""/>-->
-<!--        <property name="suffix" value=".ftl"/>-->
-
-<!--        &lt;!&ndash; if you want to use the Spring FreeMarker macros, set this property to true &ndash;&gt;-->
-<!--        <property name="exposeSpringMacroHelpers" value="false"/>-->
-
-<!--    </bean>-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <property name="cache" value="true"/>
         <property name="prefix" value=""/>
-        <property name="suffix" value=".html"/>
+        <property name="suffix" value=".ftl"/>
         <property name="contentType" value="text/html;charset=UTF-8"/>
     </bean>
 

@@ -10,6 +10,38 @@
         <servlet-name>app</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>authorizedFilter</filter-name>
+        <filter-class>web.Filter.AuthorizedFiler</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authorizedFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>adminFilter</filter-name>
+        <filter-class>web.Filter.AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>adminFilter</filter-name>
+        <url-pattern>/product/edit</url-pattern>
+        <url-pattern>/product/new</url-pattern>
+        <url-pattern>/product/remove</url-pattern>
+        <url-pattern>/product/edit</url-pattern>
+    </filter-mapping>
+
+<!--    <filter>-->
+<!--        <filter-name>UserFilter</filter-name>-->
+<!--        <filter-class>web.Filter.UserFilter</filter-class>-->
+<!--    </filter>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>UserFilter</filter-name>-->
+<!--        <url-pattern>/cart/add</url-pattern>-->
+<!--        <url-pattern>/cart/remove</url-pattern>-->
+<!--        <url-pattern>/cart</url-pattern>-->
+<!--    </filter-mapping>-->
 <!--    <servlet>-->
 <!--        <servlet-name>productsServlet</servlet-name>-->
 <!--        <servlet-class>servlet.ProductsServlet</servlet-class>-->

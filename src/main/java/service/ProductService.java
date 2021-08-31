@@ -1,40 +1,40 @@
 package service;
 
 import entity.Product;
-import jdbc.JDBCProductDAO;
+import jdbc.impl.ProductDAO;
 
 import java.util.List;
 
 public class ProductService {
-    public void setJdbcProductDAO(JDBCProductDAO jdbcProductDAO) {
+    public void setProductDAO(ProductDAO productDAO) {
 
-        this.jdbcProductDAO = jdbcProductDAO;
+        this.productDAO = productDAO;
     }
 
-    private JDBCProductDAO jdbcProductDAO;
+    private ProductDAO productDAO;
 
     public List<Product> getAll(){
 
-        return jdbcProductDAO.getAllProducts();
+        return productDAO.getAllProducts();
     }
 
     public void update(Product product) {
 
-        jdbcProductDAO.update(product);
+        productDAO.update(product);
     }
 
     public void delete(int id) {
 
-        jdbcProductDAO.delete(id);
+        productDAO.delete(id);
     }
 
     public void create(Product product) {
 
-        jdbcProductDAO.create(product);
+        productDAO.create(product);
     }
 
     public Product findById(int id){
 
-        return jdbcProductDAO.findById(id);
+        return productDAO.findById(id);
     }
 }
